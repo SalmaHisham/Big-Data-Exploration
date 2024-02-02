@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="flink-dist_2.12-1.19-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../flink/flink-dist/target/flink-dist_2.12-1.19-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../flink/flink-dist/target/flink-dist_2.12-1.19-SNAPSHOT.jar!/" />
+    </SOURCES>
+  </library>
+</component>

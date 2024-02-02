@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="FlinkTask5:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/FlinkTask5_jar</output-path>
+    <root id="archive" name="FlinkTask5.jar">
+      <element id="module-output" name="FlinkTask5" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,109 @@
+We will use the data inside accounts.zip (Data contains customer accounts information of a telecommunication company)
+
+------------------------------------------------------------------------------------------------------------------
+1. Put the data inside HDFS
+1.1 open terminal where the data is and run the following to move data into HIVE namenode  
+sudo docker cp accounts docker-hive_namenode_1:/lab4
+
+1.2 open hive namenode bash
+sudo docker exec -it docker-hive_hive-server_1 bash
+
+1.3 move data into hdfs
+hdfs dfs -put /lab4  /lab4
+
+------------------------------------------------------------------------------------------------------------------
+2. open hive bash
+2.1 cd hive/bin
+
+2.2 hive
+------------------------------------------------------------------------------------------------------------------
+3. created an EXTERNAL table for the accounts data
+3.1 CREATE DATABASE lab4;
+
+3.2 USE lab4
+
+3.3 CREATE EXTERNAL TABLE accounts_table (
+    cust_id INT,
+    creationdate STRING,
+    expirationDate STRING,
+    fname STRING,
+    lname STRING,
+    address STRING,
+    city STRING,
+    state STRING,
+    zipcode STRING
+    )
+    
+    ROW FORMAT DELIMITED
+    FIELDS TERMINATED BY ','
+    LOCATION '/lab4';
+
+3.4 Put the data inside the table
+LOAD DATA INPATH "/lab4" INTO TABLE accounts_table;
+
+------------------------------------------------------------------------------------------------------------------
+4. Create a new table from the previous table partitioned by state
+4.1
+SET hive.exec.dynamic.partition = true;
+SET hive.exec.dynamic.partition.mode = nonstrict;
+SET hive.exec.max.dynamic.partitions.pernode = 400;
+
+4.2
+CREATE TABLE accounts_table_state_partitioned (
+  cust_id INT,
+  creationdate STRING,
+  expirationDate STRING,
+  fname STRING,
+  lname STRING,
+  address STRING,
+  city STRING,
+  zipcode STRING
+)
+PARTITIONED BY (state STRING);
+
+4.3
+INSERT OVERWRITE TABLE accounts_table_state_partitioned PARTITION (state)
+SELECT cust_id, creationdate, expirationDate, fname, lname, address, city, zipcode, state
+FROM accounts_table;
+
+------------------------------------------------------------------------------------------------------------------
+5.Perform the following query on the partitioned table (state): Get the first name and the last name of all customers from "NV" state
+SELECT fname, lname FROM accounts_table_state_partitioned WHERE state = 'NV';
+- Time taken: 0.103 seconds, Fetched: 11017 row(s)
+
+------------------------------------------------------------------------------------------------------------------
+6. Create a new table partitioned by state and city.
+6.1
+CREATE TABLE accounts_table_state_city_partitioned (
+  cust_id INT,
+  creationdate STRING,
+  expirationDate STRING,
+  fname STRING,
+  lname STRING,
+  address STRING,
+  zipcode STRING
+)
+PARTITIONED BY (state STRING, city STRING);
+6.2
+INSERT OVERWRITE TABLE accounts_table_state_city_partitioned PARTITION (state, city)
+SELECT cust_id, creationdate, expirationDate, fname, lname, address, zipcode, state, city
+FROM accounts_table;
+- Time taken: 34.819 seconds
+
+------------------------------------------------------------------------------------------------------------------
+7. Perform the following query on the 3 tables regular table, partitioned table (state), and partitioned table (state, city): Retrieve the names of the customers in the CA, Oakland and Observe the time taken by the 3 queries on the 3 tables.
+7.1
+SELECT fname, lname FROM accounts_table WHERE state = 'CA' AND city = 'Oakland';
+- Time taken: 0.141 seconds, Fetched: 3491 row(s)
+
+7.2
+SELECT fname, lname FROM accounts_table_state_partitioned WHERE state = 'CA' AND city = 'Oakland';
+- Time taken: 0.121 seconds, Fetched: 3491 row(s)
+
+7.3
+SELECT fname, lname FROM accounts_table_state_city_partitioned WHERE state = 'CA' AND city = 'Oakland';
+- Time taken: 0.129 seconds, Fetched: 3491 row(s)
+
+
+
+
