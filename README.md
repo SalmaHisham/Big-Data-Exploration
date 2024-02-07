@@ -6,10 +6,10 @@ Each project is organized into its own directory, making it easy to navigate and
 
 ## Table of Contents
 
-- [Map_Reduce](#https://github.com/SalmaHisham/Intro_Big_data/tree/main/Map_Reduce)
-- [docker-Hadoop](#https://github.com/SalmaHisham/Intro_Big_data/tree/main/docker-Hadoop)
-- [docker-Hive](#https://github.com/SalmaHisham/Intro_Big_data/tree/main/docker-Hive)
-- [docker-Flink](#https://github.com/SalmaHisham/Intro_Big_data/tree/main/docker-Flink)
+- [Map_Reduce](https://github.com/SalmaHisham/Intro_Big_data/tree/main/Map_Reduce)
+- [docker-Hadoop](https://github.com/SalmaHisham/Intro_Big_data/tree/main/docker-Hadoop)
+- [docker-Hive](https://github.com/SalmaHisham/Intro_Big_data/tree/main/docker-Hive)
+- [docker-Flink](https://github.com/SalmaHisham/Intro_Big_data/tree/main/docker-Flink)
 
 ## Project 1: Map Reduce
 
@@ -70,7 +70,7 @@ It covers:
 ----
 
 
-## Project 3: Flink
+## Project 4: Flink
 This project is a **Flink application** that calculates the session duration for each IP address based on a given dataset. The session duration results are saved to a file for further analysis.
 
 It covers:
