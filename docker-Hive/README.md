@@ -21,17 +21,12 @@ $ git clone https://github.com/big-data-europe/docker-hive.git
 $ sudo docker compose up
 ```
 
-### Step3: Move the data files to the Hive namenode container:
+### Step3: Move the data folder to the Hive namenode container:
 
 
 ```
-$ sudo docker cp part-m-00000 docker-hive-namenode-1:part-m-00000
-$ sudo docker cp part-m-00001 docker-hive-namenode-1:part-m-00001
-$ sudo docker cp part-m-00002 docker-hive-namenode-1:part-m-00002
-$ sudo docker cp part-m-00003 docker-hive-namenode-1:part-m-00003
-$ sudo docker cp part-m-00004 docker-hive-namenode-1:part-m-00004
-$ sudo docker cp part-m-00005 docker-hive-namenode-1:part-m-00006
-$ sudo docker cp part-m-00006 docker-hive-namenode-1:part-m-00006
+$ sudo docker cp accounts docker-hive-namenode-1:accounts
+
 ```
 
 ### Step4: Access the Hive namenode container:
@@ -50,13 +45,8 @@ $ hdfs dfs -mkdir -p /data
 
 
 ```
-$ hdfs dfs -put part-m-00000 /data/part-m-00000
-$ hdfs dfs -put part-m-00001 /data/part-m-00001
-$ hdfs dfs -put part-m-00002 /data/part-m-00002
-$ hdfs dfs -put part-m-00003 /data/part-m-00003
-$ hdfs dfs -put part-m-00004 /data/part-m-00004
-$ hdfs dfs -put part-m-00005 /data/part-m-00005
-$ hdfs dfs -put part-m-00006 /data/part-m-00006
+$ hdfs dfs -put accounts /data/accounts
+
 ```
 
 
@@ -88,13 +78,7 @@ Time taken: 2.212 seconds
 To load data into the customer_table:
 
 ```
-LOAD DATA INPATH '/data/part-m-00000' INTO TABLE customer_table;
-LOAD DATA INPATH '/data/part-m-00001' INTO TABLE customer_table;
-LOAD DATA INPATH '/data/part-m-00002' INTO TABLE customer_table;
-LOAD DATA INPATH '/data/part-m-00003' INTO TABLE customer_table;
-LOAD DATA INPATH '/data/part-m-00004' INTO TABLE customer_table;
-LOAD DATA INPATH '/data/part-m-00005' INTO TABLE customer_table;
-LOAD DATA INPATH '/data/part-m-00006' INTO TABLE customer_table;
+LOAD DATA INPATH '/data/accounts' INTO TABLE customer_table;
 ```
 Time taken: 0.253 seconds
 

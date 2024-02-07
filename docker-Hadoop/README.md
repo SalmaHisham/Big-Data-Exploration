@@ -1,5 +1,4 @@
 # Inverted Index using MapReduce in Java and Docker Hadoop Cluster
-This README file provides detailed instructions on implementing an inverted index using MapReduce in Java and running it on a Docker Hadoop cluster. Additionally, it explains how to monitor the application using the Resource Manager.
 
 ## Introduction
 The inverted index is a data structure commonly used in information retrieval systems to quickly find documents that contain specific words. It maps each term to a list of documents in which the term appears. In this project, we'll implement an inverted index using MapReduce, a programming model for processing large datasets in parallel.
