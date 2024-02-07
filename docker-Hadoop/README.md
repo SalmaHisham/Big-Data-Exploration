@@ -93,9 +93,8 @@ hdfs dfs -get /output <local-output-directory>
 ```
 Replace `<local-output-directory>` with the desired path on your local machine to store the output.
 
-The output file is part-r-000
+The output file is part-r-00000
 
-![image](https://github.com/nourhansowar/Docker-Hadoop-Cluster/assets/48545560/610af001-5659-4552-8c5e-78fbc95a656f)
+![alt text](image.png)
 
-
-![image](https://github.com/nourhansowar/Docker-Hadoop-Cluster/assets/48545560/92060efb-dde2-41ff-87a8-18f1f6c022e6)
+![alt text](image-1.png)
